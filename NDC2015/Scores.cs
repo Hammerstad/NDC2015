@@ -23,6 +23,7 @@ namespace NDC2015
             CreateFileIfNeeded(LeaderBoardPath);
             CreateFileIfNeeded(scoresPath);
             CopyFileIfNeeded("leaderboard.css");
+            CopyFileIfNeeded("logo.png");
         }
 
         public Scores()
