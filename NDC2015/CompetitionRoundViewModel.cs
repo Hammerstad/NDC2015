@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Threading;
 using Runner;
 
@@ -40,7 +39,7 @@ namespace NDC2015
             Scores.AddRange(scores.TheScores);
         }
 
-        public RoundAdminViewModel RoundAdminViewModel { get; }
+        public RoundAdminViewModel RoundAdminViewModel { get; private set; }
 
         public ObservableCollection<TestResultViewModel> TestResults
         {
