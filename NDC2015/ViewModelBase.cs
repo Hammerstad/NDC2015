@@ -17,9 +17,10 @@ namespace NDC2015
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
+            var propertyChanged = PropertyChanged;
+            if (propertyChanged != null)
             {
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                propertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
