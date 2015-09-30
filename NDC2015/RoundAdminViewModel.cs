@@ -1,10 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows.Documents.Serialization;
-using System.Windows.Input;
 using System.Windows.Threading;
-using Runner;
 
 namespace NDC2015
 {
@@ -44,8 +40,8 @@ namespace NDC2015
             ButtonText = RunningText;
         }
 
-        public DelegateCommand StartCommand { get; }
-        public DelegateCommand ButtonTwoCommand { get; }
+        public DelegateCommand StartCommand { get; private set; }
+        public DelegateCommand ButtonTwoCommand { get; private set; }
 
         public string Contestant
         {
@@ -85,7 +81,10 @@ namespace NDC2015
             set { Set(ref showSummary, value); }
         }
 
-        public bool Running => stopWatch.IsRunning;
+        public bool Running
+        {
+            get { return stopWatch.IsRunning; }
+        }
 
         public string ElapsedTime { get; private set; }
 
@@ -99,7 +98,7 @@ namespace NDC2015
 
             enableButtonTwo = true;
             ButtonTwoCommand.OnCanExecuteChanged();
-            OnPropertyChanged(nameof(Running));
+            OnPropertyChanged("Running");
         }
 
         private void EndRound(object obj)
@@ -133,14 +132,14 @@ namespace NDC2015
                 competition.ResetTests();
                 Contestant = "";
                 Phone = "";
-                OnPropertyChanged(nameof(Running));
+                OnPropertyChanged("Running");
             }
         }
         
         private void UpdateElapsedTime(object sender, EventArgs e)
         {
             ElapsedTime = stopWatch.Elapsed.ToString(Leaderboard.ElapsedFormatString);
-            OnPropertyChanged(nameof(ElapsedTime));
+            OnPropertyChanged("ElapsedTime");
         }
     }
 }
