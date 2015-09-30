@@ -5,7 +5,7 @@ namespace NDC2015
     [Serializable]
     public struct Score
     {
-        public Score(TimeSpan elapsedTime, string contestantName, string phone)
+        public Score(TimeSpan elapsedTime, string contestantName, string phone) : this()
         {
             ElapsedTime = elapsedTime;
             ContestantName = contestantName;
@@ -16,6 +16,9 @@ namespace NDC2015
         public string ContestantName { get; set; }
         public string Phone;
 
-        public string FriendlyElapsedTime => ElapsedTime.ToString(Leaderboard.ElapsedFormatString);
+        public string FriendlyElapsedTime
+        {
+            get { return ElapsedTime.ToString(Leaderboard.ElapsedFormatString); }
+        }
     }
 }
